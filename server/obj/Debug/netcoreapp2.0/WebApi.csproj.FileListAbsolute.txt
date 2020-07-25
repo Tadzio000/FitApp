@@ -1,0 +1,14 @@
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/appsettings.Development.json
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/appsettings.json
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/WebApi.deps.json
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/WebApi.runtimeconfig.json
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/WebApi.runtimeconfig.dev.json
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/WebApi.dll
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/bin/Debug/netcoreapp2.0/WebApi.pdb
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.csprojAssemblyReference.cache
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.AssemblyInfoInputs.cache
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.AssemblyInfo.cs
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.csproj.CoreCompileInputs.cache
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.dll
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.pdb
+/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/Debug/netcoreapp2.0/WebApi.genruntimeconfig.cache
