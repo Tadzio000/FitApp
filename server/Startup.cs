@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Models;
+using Microsoft.OpenApi.Models;
+
+
 
 namespace WebApi
 {
@@ -37,6 +40,13 @@ namespace WebApi
 
             // AutoMapper
             services.AddAutoMapper(typeof(Startup));
+
+            // Swagger
+
+           services.AddSwaggerGen(c =>
+            {
+               c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger App Demo", Version = "v1" });
+            });
 
             // configure strongly typed settings objects
             var appSettingsSection = _configuration.GetSection("AppSettings");
@@ -76,6 +86,12 @@ namespace WebApi
 
             dataContext.Database.Migrate();
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger App Demo V1");
+            });
 
             // global cors policy
             app.UseCors(x => x

@@ -51,3 +51,13 @@
 /Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
 /Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/AutoMapper.dll
 /Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+/Users/admin/Desktop/repo/server/obj/Debug/netcoreapp3.1/WebApi.MvcApplicationPartsAssemblyInfo.cs
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.JsonPatch.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Microsoft.DotNet.PlatformAbstractions.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Microsoft.Extensions.DependencyModel.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Microsoft.OpenApi.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Newtonsoft.Json.Bson.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.Swagger.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Swashbuckle.AspNetCore.SwaggerUI.dll
