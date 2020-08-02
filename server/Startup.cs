@@ -8,6 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
+using Microsoft.EntityFrameworkCore;
+using WebApi.Models;
+
 namespace WebApi
 {
     public class Startup
@@ -24,6 +27,10 @@ namespace WebApi
         {
             services.AddCors();
             services.AddControllers();
+
+            // Add framework services.
+            services.AddDbContext<TodoContext>(options =>
+            options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");

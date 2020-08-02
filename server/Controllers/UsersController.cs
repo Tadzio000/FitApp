@@ -38,13 +38,15 @@ namespace WebApi.Controllers
             return Ok(users);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
+
             // only allow admins to access other user records
-            var currentUserId = int.Parse(User.Identity.Name);
-            if (id != currentUserId && !User.IsInRole(Role.Admin))
-                return Forbid();
+            //var currentUserId = int.TryParse(User.Identity.Name, out number);
+            //if (id != currentUserId && !User.IsInRole(Role.Admin))
+            //    return Forbid();
 
             var user =  _userService.GetById(id);
 
