@@ -8,68 +8,100 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.Entities;
 using WebApi.Helpers;
+using WebApi.Models;
 
 namespace WebApi.Services
 {
     public interface IUserService
     {
-        User Authenticate(string username, string password);
-        IEnumerable<User> GetAll();
-        User GetById(int id);
+        // User Authenticate(string username, string password);
+        // IEnumerable<User> GetAll();
+        // User GetById(int id);
+        User Create(User user, string password);
     }
 
     public class UserService : IUserService
     {
-        // users hardcoded for simplicity, store in a db with hashed passwords in production applications
-        private List<User> _users = new List<User>
-        { 
-            new User { Id = 1, FirstName = "Admin", LastName = "User", Username = "admin", Password = "admin", Role = Role.Admin },
-            new User { Id = 2, FirstName = "Normal", LastName = "User", Username = "user", Password = "user", Role = Role.User } 
-        };
-
+        private DataContext _context;
         private readonly AppSettings _appSettings;
-
-        public UserService(IOptions<AppSettings> appSettings)
+        public UserService(DataContext context)
         {
-            _appSettings = appSettings.Value;
+            _context = context;
         }
 
-        public User Authenticate(string username, string password)
+        // public User Authenticate(string username, string password)
+        // {
+        //     var user = _context.Users.SingleOrDefault(x => x.Username == username && x.Password == password);
+
+        //     // return null if user not found
+        //     if (user == null)
+        //         return null;
+
+        //     // authentication successful so generate jwt token
+        //     var tokenHandler = new JwtSecurityTokenHandler();
+        //     var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+        //     var tokenDescriptor = new SecurityTokenDescriptor
+        //     {
+        //         Subject = new ClaimsIdentity(new Claim[]
+        //         {
+        //             new Claim(ClaimTypes.Name, user.Id.ToString()),
+        //             new Claim(ClaimTypes.Role, user.Role)
+        //         }),
+        //         Expires = DateTime.UtcNow.AddDays(7),
+        //         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+        //     };
+        //     var token = tokenHandler.CreateToken(tokenDescriptor);
+        //     user.Token = tokenHandler.WriteToken(token);
+
+        //     return user.WithoutPassword();
+        // }
+
+        // public IEnumerable<User> GetAll()
+        // {
+
+        //     return _context.Users.WithoutPasswords();
+        // }
+
+        // public User GetById(int id)
+        // {
+
+        //     var user = _context.Users.FirstOrDefault(x => x.Id == id);
+        //     return user.WithoutPassword();
+        // }
+
+        public User Create(User user, string password)
         {
-            var user = _users.SingleOrDefault(x => x.Username == username && x.Password == password);
+            // validation
+            if (string.IsNullOrWhiteSpace(password))
+                throw new AppException("Password is required");
 
-            // return null if user not found
-            if (user == null)
-                return null;
+            if (_context.Users.Any(x => x.Username == user.Username))
+                throw new AppException("Username \"" + user.Username + "\" is already taken");
 
-            // authentication successful so generate jwt token
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
-            var tokenDescriptor = new SecurityTokenDescriptor
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            _context.Users.Add(user);
+            _context.SaveChanges();
+
+            return user;
+        }
+
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
             {
-                Subject = new ClaimsIdentity(new Claim[] 
-                {
-                    new Claim(ClaimTypes.Name, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role)
-                }),
-                Expires = DateTime.UtcNow.AddDays(7),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-            user.Token = tokenHandler.WriteToken(token);
-
-            return user.WithoutPassword();
-        }
-
-        public IEnumerable<User> GetAll()
-        {
-            return _users.WithoutPasswords();
-        }
-
-        public User GetById(int id) 
-        {
-            var user = _users.FirstOrDefault(x => x.Id == id);
-            return user.WithoutPassword();
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
         }
     }
 }
+
+

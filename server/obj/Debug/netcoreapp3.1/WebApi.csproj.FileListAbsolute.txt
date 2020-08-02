@@ -49,3 +49,5 @@
 /Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/System.Diagnostics.DiagnosticSource.dll
 /Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Microsoft.EntityFrameworkCore.Relational.Design.dll
 /Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/Npgsql.EntityFrameworkCore.PostgreSQL.Design.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/AutoMapper.dll
+/Users/admin/Desktop/repo/server/bin/Debug/netcoreapp3.1/AutoMapper.Extensions.Microsoft.DependencyInjection.dll
