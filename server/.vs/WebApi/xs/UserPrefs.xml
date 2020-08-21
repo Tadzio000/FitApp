@@ -1,0 +1,36 @@
+﻿<Properties StartupConfiguration="{B26ABBBD-FF28-429C-8E55-166F9C757E8B}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Dockerrun.aws.json">
+    <Files>
+      <File FileName="Program.cs" Line="28" Column="42" />
+      <File FileName="hostsettings.json" />
+      <File FileName="Startup.cs" Line="13" Column="32" />
+      <File FileName="Helpers/RDSAmazon.cs" />
+      <File FileName="Helpers/RDSContext.cs" />
+      <File FileName="appsettings.json" />
+      <File FileName="appsettings.Development.json" />
+      <File FileName="Helpers/DataContext.cs" />
+      <File FileName="Dockerfile" Line="18" Column="28" />
+      <File FileName="Dockerrun.aws.json" Line="12" Column="16" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WebApi" expanded="True">
+            <Node name="WebApi" expanded="True">
+              <Node name="Dockerrun.aws.json" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.WebApi PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/admin/Desktop/FitApp/server/Entities/Exercises.cs" relfile="Entities/Exercises.cs" line="16" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

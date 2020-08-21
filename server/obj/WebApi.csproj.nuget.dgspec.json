@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/WebApi.csproj": {}
+    "/Users/admin/Desktop/FitApp/server/WebApi.csproj": {}
   },
   "projects": {
-    "/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/WebApi.csproj": {
+    "/Users/admin/Desktop/FitApp/server/WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/WebApi.csproj",
+        "projectUniqueName": "/Users/admin/Desktop/FitApp/server/WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/WebApi.csproj",
+        "projectPath": "/Users/admin/Desktop/FitApp/server/WebApi.csproj",
         "packagesPath": "/Users/admin/.nuget/packages/",
-        "outputPath": "/Users/admin/Desktop/repo/aspnet-core-react-registration-login-example/server/obj/",
+        "outputPath": "/Users/admin/Desktop/FitApp/server/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -20,13 +20,13 @@
           "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp2.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp2.0": {
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -37,25 +37,41 @@
         }
       },
       "frameworks": {
-        "netcoreapp2.0": {
+        "netcoreapp3.1": {
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
-              "version": "[6.0.2, )"
+              "version": "[10.0.0, )"
             },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[2.0.1, )"
+              "version": "[8.0.1, )"
             },
-            "Microsoft.AspNetCore.All": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[2.0.0, )"
+              "version": "[3.1.0, )"
             },
-            "Microsoft.NETCore.App": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.0, )",
-              "autoReferenced": true
+              "version": "[3.1.6, )"
+            },
+            "NpgSql.EntityFrameworkCore.PostgreSQL.Design": {
+              "target": "Package",
+              "version": "[1.1.1, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.0.0-rc4, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[5.6.0, )"
             }
           },
           "imports": [
@@ -68,7 +84,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.300/RuntimeIdentifierGraph.json"
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.302/RuntimeIdentifierGraph.json"
         }
       }
     }

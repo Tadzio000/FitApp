@@ -1,37 +1,29 @@
+import { http } from "./http.service";
+
 export const userService = {
     register,
-};
+    login,
+    allUsers,
+  };
 
-export const config = {
-    apiUrl: 'http://localhost:5000'
-};
+const apiURL = "http://test.eba-hxurpixx.eu-west-1.elasticbeanstalk.com"
+const localapiURL = "http://localhost:5005"
 
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
-    return fetch(config.apiUrl + '/users/register', requestOptions).then(handleResponse, handleError);
-}
+//
+const USER_URL = `${localapiURL}/Users/register`;
+const USER_URL3 = `${localapiURL}/Users`;
 
-function handleResponse(response) {
-    return new Promise((resolve, reject) => {
-        if (response.ok) {
-            // return json if it was returned in the response
-            var contentType = response.headers.get("content-type");
-            if (contentType && contentType.includes("application/json")) {
-                response.json().then(json => resolve(json));
-            } else {
-                resolve();
-            }
-        } else {
-            // return error message from response body
-            response.text().then(text => reject(text));
-        }
-    });
-}
+const USER_URL2 = `${localapiURL}/Users/authenticate`;
 
-function handleError(error) {
-    return Promise.reject(error && error.message);
-}
+
+  function register(body) {
+    return http.post(USER_URL, body);
+  }
+
+  function login(body) {
+    return http.post(USER_URL2, body);
+  }
+
+  function allUsers(body) {
+    return http.get(USER_URL3, body);
+  }

@@ -1,6 +1,10 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
 namespace WebApi
 {
@@ -8,12 +12,22 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            CreateWebHostBuilder(args).Build().Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args)
+        {
+            var config = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("hostsettings.json", optional: true)
+                .AddCommandLine(args)
                 .Build();
+
+            return WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://*:5005")
+                .UseConfiguration(config)
+                .UseStartup<Startup>();
+        }
     }
 }
