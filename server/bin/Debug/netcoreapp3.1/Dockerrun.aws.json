@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "ttcpiotrzak/fitapp"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 5005,
+      "HostPort": 5005
+    }
+  ],
+  "AllowedHeaders": [
+    "*"
+  ],
+  "AllowedMethods": [
+    "GET",
+    "HEAD"
+  ],
+  "AllowedOrigins": [
+    "*"
+  ],
+  "MaxAgeSeconds": 3000
+}

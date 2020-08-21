@@ -1,10 +1,13 @@
 ﻿using System;
-namespace WebApi.Controllers.ViewModels
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace WebApi.Models
 {
-    public class EmptyClass
+    public class CreatePlan
     {
-        public EmptyClass()
-        {
-        }
+        [Required]
+        public string Title { get; set; }
+        //public string[] ExerciseId { get; set; }
     }
 }

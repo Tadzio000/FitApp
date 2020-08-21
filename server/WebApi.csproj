@@ -22,4 +22,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\ViewModels\" />
+  </ItemGroup>
 </Project>

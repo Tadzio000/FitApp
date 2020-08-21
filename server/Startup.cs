@@ -11,29 +11,30 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Models;
 using Microsoft.OpenApi.Models;
-
-
+using WebApi.Entities;
+using Microsoft.Extensions.Hosting.Internal;
 
 namespace WebApi
 {
     public class Startup
     {
         private readonly IWebHostEnvironment _env;
-        public IConfiguration _configuration { get; }
+        public IConfiguration Configuration { get; }
+
         public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             _env = env;
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            // services.AddCors();
             services.AddControllers();
 
              // Use a PostgreSQL database
-            var sqlConnectionString = _configuration.GetConnectionString("WebApiDatabase");
+            var sqlConnectionString = Configuration.GetConnectionString("AmazonRDS");
 
             services.AddDbContext<DataContext>(options =>
                 options.UseNpgsql(sqlConnectionString));
@@ -41,42 +42,43 @@ namespace WebApi
             // AutoMapper
             services.AddAutoMapper(typeof(Startup));
 
+
             // Swagger
 
-           services.AddSwaggerGen(c =>
+            services.AddSwaggerGen(c =>
             {
                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Swagger App Demo", Version = "v1" });
             });
 
             // configure strongly typed settings objects
-            var appSettingsSection = _configuration.GetSection("AppSettings");
+            var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 
             // configure jwt authentication
-            // var appSettings = appSettingsSection.Get<AppSettings>();
-            // var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-            // services.AddAuthentication(x =>
-            // {
-            //     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //     x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            // })
-            // .AddJwtBearer(x =>
-            // {
-            //     x.RequireHttpsMetadata = false;
-            //     x.SaveToken = true;
-            //     x.TokenValidationParameters = new TokenValidationParameters
-            //     {
-            //         ValidateIssuerSigningKey = true,
-            //         IssuerSigningKey = new SymmetricSecurityKey(key),
-            //         ValidateIssuer = false,
-            //         ValidateAudience = false
-            //     };
-            // });
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+                x.RequireHttpsMetadata = false;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
-
-
+            services.AddScoped<IPlanService, PlanService>();
+            services.AddScoped<IExerciseService, ExerciseService>();
 
         }
 
@@ -84,28 +86,29 @@ namespace WebApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext dataContext)
         {
 
-            dataContext.Database.Migrate();
-            app.UseRouting();
+                dataContext.Database.Migrate();
+                app.UseRouting();
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger App Demo V1");
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger App Demo V1");
+                });
 
-            // global cors policy
-            app.UseCors(x => x
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+                // global cors policy
+                app.UseCors(x => x
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+                app.UseAuthentication();
+                app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
+
         }
     }
 }

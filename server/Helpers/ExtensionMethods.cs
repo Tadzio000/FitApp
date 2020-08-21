@@ -18,6 +18,8 @@ namespace WebApi.Helpers
             if (user == null) return null;
 
             user.Password = null;
+            user.PasswordHash = null;
+            user.PasswordSalt = null;
             return user;
         }
     }

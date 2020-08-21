@@ -1,0 +1,156 @@
+
+$primaryColor: #5E4AE3;
+
+$backgroundColor: #F3F3F5;
+$white: #FFFFFF;
+
+h1{
+
+}
+
+p{
+    font-family: Montserrat;
+font-style: light;
+font-size: 14px;
+line-height: 20px;
+}
+
+p, h2, label{
+font-family: Montserrat;
+font-style: regular;
+font-size: 14px;
+line-height: 20px;
+}
+
+.input{
+position: absolute;
+left: 0px;
+right: 0px;
+top: 0px;
+bottom: 25px;
+
+/* gray / white */
+
+background: #FFFFFF;
+/* dividers-borders / input-border */
+
+border: 1px solid #9898A5;
+box-sizing: border-box;
+border-radius: 3px;
+}
+
+input-error{
+    border: 1px solid red;
+}
+
+.primary-button{
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+padding: 6px 16px;
+background: $primaryColor;
+color:white;
+border-radius: 2px;
+}
+
+
+
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:$backgroundColor;
+    &__content{
+        padding:10% 10%;
+        background: $white;
+        box-shadow: 0px 0.3px 0.9px rgba(34, 34, 34, 0.1), 0px 1.6px 3.6px rgba(34, 34, 34, 0.13);
+        border-radius: 5px;
+    }
+}
+
+
+
+
+
+.alert-container {
+    position: fixed;
+    z-index: 9999;
+    top: 25px;
+    width:80%;
+
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 15px;
+    text-align: left;
+
+    .alert-danger {
+        background-color:rgb(241, 172, 172);
+        padding:2% 2%;
+        text-align:center;
+    }
+
+    .alert-success {
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      background-color: #15b082
+    }
+  
+    .alert-info {
+        color: #ef9c72;
+    }
+}
+
+
+.user-component{
+
+    position: static;
+    width: 343px;
+    height: 72px;
+    left: 16px;
+    top: 0px;
+    
+    /* gray / 80 */
+    
+    background: #31313D;
+    border-radius: 4px;
+    
+    /* Inside Auto Layout */
+    
+    flex: none;
+    order: 3;
+    align-self: flex-start;
+    margin: 0px 8px;
+    > h1, p{
+        color:white;
+        font-size:12px;
+        font-family: Montserrat;
+    }
+}
+
+.arrow{
+    display: flex;
+flex-direction: row;
+padding: 0px;
+
+position: static;
+width: 32px;
+height: 32px;
+right: 0px;
+top: calc(50% - 32px/2);
+
+/* gray / 70 */
+
+background: #51515F;
+border-radius: 100px;
+
+/* Inside Auto Layout */
+
+flex: none;
+order: 1;
+align-self: center;
+margin: 8px 0px;
+}

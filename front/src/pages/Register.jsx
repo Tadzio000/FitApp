@@ -1,40 +1,49 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormInput } from "../common/FormInput"
 import { Button } from "reactstrap";
 import { useDispatch } from 'react-redux'
-import { userActions } from '../actions/userActions';
+import { userService } from '../services/userServices';
+
+import { alertActions } from '../redux/actions/alert.actions'
 
 
 export const RegisterPage = (props) => {
 
-    const [user, setUser] = useState([])
+    const [userData, setUserData] = useState({})
     const dispatch = useDispatch()
-    
-    useEffect(() => {
-        console.log('called')
-      });
 
     const handleInput = (e) => {
-        user[e.target.name] = e.target.value;
-        setUser(user);
-        console.log(user)
+        userData[e.target.name] = e.target.value;
+        setUserData(userData);
     }
 
+    
     const submitForm = () => {
-        if (user.email && user.password) {
-            dispatch(userActions.register(user));
-        }
+        userService
+            .register(userData)
+            .then((data) => {
+                console.log(data)
+                dispatch(alertActions.success("User succesfully added!"))
+            })
+            .catch((error) => {
+                console.log(error)
+                dispatch(alertActions.error(error.title))
+                console.log(error)
+            });
     }
 
     return (
-    <div>
-        test
-      <FormInput id = "email" name ="email" onChange = {handleInput} label = "Email"/>
-      <FormInput id ="password" name ="password" onChange = {handleInput} label = "Password"/>
-      <Button id="display-button" color="primary" onClick={submitForm}>
-        Send Data
+        <div className="container">
+            <div className="container__content">
+                <FormInput id="email" name="email" onChange={handleInput} label="Email" />
+                <FormInput id="password" name="password" onChange={handleInput} label="Password" />
+                <Button className="primary-button" id="display-button" color="primary" onClick={submitForm}>
+                    Register
       </Button>
-    </div>
+            </div>
+
+
+        </div>
     );
-  }
+}
 

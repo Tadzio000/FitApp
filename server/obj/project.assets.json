@@ -6653,11 +6653,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/admin/Desktop/repo/server/WebApi.csproj",
+      "projectUniqueName": "/Users/admin/Desktop/FitApp/server/WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "/Users/admin/Desktop/repo/server/WebApi.csproj",
+      "projectPath": "/Users/admin/Desktop/FitApp/server/WebApi.csproj",
       "packagesPath": "/Users/admin/.nuget/packages/",
-      "outputPath": "/Users/admin/Desktop/repo/server/obj/",
+      "outputPath": "/Users/admin/Desktop/FitApp/server/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

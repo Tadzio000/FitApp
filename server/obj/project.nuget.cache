@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W5kOkZKScrBpHjS0o0yaovoOr+9gpBHYHl8TORhH5doE5SEI/uZdEYOsHNVKF5e8ad4bPzv0pk4pH+gPv3ICaQ==",
+  "dgSpecHash": "PXEPInBUlfTu2rNEAYjVsR6PZ33ZObfJgFT8qxK7k8XKLy02NpVRi0D94ixJTX6zf5lqH7HHMLUpQScXHv4xxA==",
   "success": true,
-  "projectFilePath": "/Users/admin/Desktop/repo/server/WebApi.csproj",
+  "projectFilePath": "/Users/admin/Desktop/FitApp/server/WebApi.csproj",
   "expectedPackageFiles": [
     "/Users/admin/.nuget/packages/automapper/10.0.0/automapper.10.0.0.nupkg.sha512",
     "/Users/admin/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.0.1/automapper.extensions.microsoft.dependencyinjection.8.0.1.nupkg.sha512",

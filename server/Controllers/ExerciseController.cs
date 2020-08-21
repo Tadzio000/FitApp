@@ -9,39 +9,40 @@ using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 
 using WebApi.Models;
+using System.Threading.Tasks;
 
 namespace WebApi.Controllers
 {
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class PlansController : ControllerBase
+    public class ExercisesController : ControllerBase
     {
-        private IPlanService _planService;
+        private IExerciseService _ExerciseService;
         private IMapper _mapper;
         private readonly AppSettings _appSettings;
        
-        public PlansController(
-            IPlanService planService,
+        public ExercisesController(
+            IExerciseService ExerciseService,
             IMapper mapper,
             IOptions<AppSettings> appSettings)
         {
-            _planService = planService ;
+            _ExerciseService = ExerciseService ;
             _mapper = mapper;
             _appSettings = appSettings.Value;
         }
 
         [AllowAnonymous]
         [HttpPost("create")]
-        public IActionResult Create([FromBody]Plan model)
+        public ActionResult<Exercise> CreateExercise([FromBody] CreateExercise model)
         {
             // map model to entity
-            var plan = _mapper.Map<Plan>(model);
+            var Exercise = _mapper.Map<Exercise>(model);
 
             try
             {
-                // create plan
-                _planService.Create(plan);
+                // create Exercise
+                _ExerciseService.Create(Exercise);
                 return Ok();
             }
             catch (AppException ex)
@@ -49,6 +50,26 @@ namespace WebApi.Controllers
                 // return error message if there was an cexception
                 return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [AllowAnonymous]
+        [HttpGet("{id}")]
+        public IActionResult GetById(string id)
+        {
+            var exercise = _ExerciseService.GetById(id);
+
+            if (exercise == null)
+                return NotFound();
+
+            return Ok(exercise);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var exercises = _ExerciseService.GetAll();
+            return Ok(exercises);
         }
     }
 }
